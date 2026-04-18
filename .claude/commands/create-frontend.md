@@ -46,11 +46,11 @@ Aqui importamos a fonte pixelada e estilizamos os inputs genéricos e o fundo pr
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 :root {
-  --bg-color: #000000;
-  --panel-bg: #000033; /* Azul escuro retro */
+  --bg-color: #381919;
+  --panel-bg: #3f1f0c; /* Azul escuro retro */
   --text-color: #ffffff;
   --accent-color: #ffaa00; /* Laranja da checkbox */
-  --border-color: #ffffff;
+  --border-color: #7d3606;
 }
 
 body {
