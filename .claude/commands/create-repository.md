@@ -18,7 +18,7 @@ Then carry out all steps below without further interruption.
 
 ## Step 1 — Create the repository file
 
-Path: `dungeon-companion-api/src/services/<domain>/<domain>.repository.ts`
+Path: `dungeon-companion-api/src/repositories/<domain>.repository.ts`
 
 ```typescript
 import {inject, injectable, BindingScope} from '@loopback/core';
