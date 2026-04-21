@@ -106,20 +106,20 @@ export class CharacterWizardComponent {
   private charService = inject(CharacterService);
 
   // Novos estados para a UI
-  isSaving = false;
+  showLoader = false;
   showSuccess = false;
 
   // ... (mantenha o resto do código)
 
   saveGame() {
-    this.isSaving = true;
+    this.showLoader = true;
     
     this.charService.saveCharacterToApi(this.characterData).subscribe({
       next: (apiResponse) => {
         // Salva a ficha gerada no serviço
         this.charService.currentCharacter.set(apiResponse);
         
-        this.isSaving = false;
+        this.showLoader = false;
         this.showSuccess = true;
 
         // Aguarda 1.5s mostrando a mensagem e redireciona
@@ -129,7 +129,7 @@ export class CharacterWizardComponent {
       },
       error: (err) => {
         console.error(err);
-        this.isSaving = false;
+        this.showLoader = false;
         alert('Erro ao criar personagem!');
       }
     });
@@ -140,7 +140,7 @@ export class CharacterWizardComponent {
 **No final do seu arquivo `.html` do Wizard, adicione as telas de Loading e Sucesso:**
 ```html
 <!-- OVERLAYS DE LOADING E SUCESSO -->
-@if (isSaving) {
+@if (showLoader) {
   <div class="overlay loading-overlay">
     <div class="retro-panel blinking-text">
       <p>SALVANDO O JOGO...</p>
@@ -422,6 +422,6 @@ ul { list-style: none; padding: 0; margin: 0; }
 > 
 > 1. Crie uma interface `CharacterSheetResponse` para tipar o payload de resposta da API que te passei.
 > 2. Crie um `CharacterService` que possua um Signal ou BehaviorSubject para armazenar os dados do personagem após a API responder. 
-> 3. No arquivo atual `character-wizard.component.ts`, injete esse serviço e o `Router`. Ao clicar em 'Salvar Jogo', mude o estado `isSaving` para true para exibir a tela preta com Loading piscante. Quando o serviço responder, mude para `showSuccess` e mostre a mensagem 'Personagem criado com sucesso' por 1.5 segundos.
+> 3. No arquivo atual `character-wizard.component.ts`, injete esse serviço e o `Router`. Ao clicar em 'Salvar Jogo', mude o estado `showLoader` para true para exibir a tela preta com Loading piscante. Quando o serviço responder, mude para `showSuccess` e mostre a mensagem 'Personagem criado com sucesso' por 1.5 segundos.
 > 4. Redirecione o usuário (`router.navigate`) para uma nova rota chamada `/sheet-result`.
 > 5. Crie um novo componente chamado `CharacterSheetComponent`. Copie a estrutura de HTML, TS e SCSS que estou te enviando para organizar os atributos, CA, Vida e Perícias simulando o estilo de uma tela final de RPG clássico de SNES.
