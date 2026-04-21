@@ -18,6 +18,10 @@ CREATE TABLE Skill (
 -- SCRIPT DE CRIAÇÃO DO BANCO DE DADOS D&D 5E - POSTGRESQL
 -- ====================================================================================
 
+--ADICIONAR O CAMPO DESCRIPTION NO ATTRIBUTE_TYPE
+-- Ajustar relacionamento character_skill
+-- adicionar campo description na tabela skill
+
 -- Limpeza prévia (Opcional - Remove as tabelas se elas já existirem)
 DROP TABLE IF EXISTS Character_Items CASCADE;
 DROP TABLE IF EXISTS Character_Weapon CASCADE;
