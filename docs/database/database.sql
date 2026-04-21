@@ -2,7 +2,8 @@
 CREATE TABLE Attribute_Type (
     id_attribute INT PRIMARY KEY,
     name VARCHAR(3) NOT NULL,
-    full_name VARCHAR(20) NOT NULL
+    full_name VARCHAR(20) NOT NULL,
+    description TEXT
 );
 
 -- Criar tabela de Perícias (Skills)
@@ -10,17 +11,14 @@ CREATE TABLE Skill (
     id_skill SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     id_attribute INT,
+    description TEXT,
     CONSTRAINT fk_attribute FOREIGN KEY (id_attribute) REFERENCES Attribute_Type(id_attribute)
 );
 
---- SCRIPTS ABAIXO AINDA NÃO EXECUTADOS:
 -- ====================================================================================
 -- SCRIPT DE CRIAÇÃO DO BANCO DE DADOS D&D 5E - POSTGRESQL
 -- ====================================================================================
 
---ADICIONAR O CAMPO DESCRIPTION NO ATTRIBUTE_TYPE
--- Ajustar relacionamento character_skill
--- adicionar campo description na tabela skill
 
 -- Limpeza prévia (Opcional - Remove as tabelas se elas já existirem)
 DROP TABLE IF EXISTS Character_Items CASCADE;
@@ -47,6 +45,7 @@ DROP TABLE IF EXISTS Alignment CASCADE;
 
 CREATE TABLE Alignment (
     id_alignment SERIAL PRIMARY KEY,
+    name VARCHAR(50),
     description VARCHAR(255) NOT NULL
 );
 
@@ -90,6 +89,7 @@ CREATE TABLE Skill (
 CREATE TABLE Attribute_Type (
     id_attribute_type SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
+    full_name VARCHAR(50),
     description TEXT
 );
 
@@ -180,8 +180,7 @@ CREATE TABLE Character_Skill (
     
     -- Chaves Estrangeiras
     id_character INT REFERENCES Character(id_character) ON DELETE CASCADE,
-    id_skill INT REFERENCES Skill(id_skill),
-    id_attribute_type INT REFERENCES Attribute_Type(id_attribute_type)
+    id_skill INT REFERENCES Skill(id_skill)
 );
 
 CREATE TABLE Character_Attribute (
@@ -191,7 +190,7 @@ CREATE TABLE Character_Attribute (
     
     -- Chaves Estrangeiras
     id_character INT REFERENCES Character(id_character) ON DELETE CASCADE,
-    id_attribute_type INT REFERENCES Attribute_Type(id_attribute_type)
+    id_attribute INT REFERENCES Attribute_Type(id_attribute)
 );
 
 CREATE TABLE Character_Spell (
@@ -199,7 +198,7 @@ CREATE TABLE Character_Spell (
     
     -- Chaves Estrangeiras
     id_character INT REFERENCES Character(id_character) ON DELETE CASCADE,
-    id_attribute_type INT REFERENCES Attribute_Type(id_attribute_type),
+    id_attribute INT REFERENCES Attribute_Type(id_attribute),
     id_spell INT REFERENCES Spell(id_spell)
 );
 
