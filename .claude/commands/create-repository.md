@@ -115,3 +115,4 @@ The canonical example in this project is `CharacterOptionsRepository`:
 | `src/services/character-options/types.ts` | `AttributeType`, `Skill`, `WeaponOption`, `CharacterOptions` |
 | `src/services/character-options.service.ts` | Service injecting the repository via `@service()` |
 | `src/application.ts` | `this.service(CharacterOptionsRepository)` registered before the service |
+| `../../docs/database/database.sql` | Have the database structure of all tables |
