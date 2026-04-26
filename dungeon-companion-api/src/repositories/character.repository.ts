@@ -194,6 +194,7 @@ export class CharacterRepository {
       WHERE ci.id_character = ${id}
     `;
 
+
     return {character, attributes, skills, spells, weapons, items};
   }
 }
